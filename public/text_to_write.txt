@@ -6,12 +6,15 @@ import ResultsDisplay from "@/components/ResultsDisplay";
 import { useEffect, useState } from "react";
 export default function TextDisplay({ text, correct, wrong }) {
 return (
-<div className=" m-2 p-3 border border-gray-900 rounded-sm">
+<div style={{userSelect: "none"}} className=" m-2 p-3 border border-gray-900 rounded-sm">
 {
+
 text.split("").map((char, index) => {
+
 char = char.replace(" ", "\xa0")
+
 if (index < (correct)) return <span key={index} className="font-bold">{char == "\n" ? <br /> : char}</span>
-else if (index < (correct + wrong)) return <span key={index} className="text-red-700 font-bold bg-orange-300">{char == "\n" ? <>↵z<br /></> : char}</span>
+else if (index < (correct + wrong)) return <span key={index} className="text-red-700 font-bold bg-orange-300">{char == "\n" ? <>↵<br /></> : char}</span>
 else return <span key={index}>{char == "\n" ? <br /> : char}</span>
 })
 }
@@ -22,6 +25,22 @@ export default function TimeDisplay({ time }) {
 return (
 <div className=" m-2 p-3 border border-gray-900 rounded-sm">
 {time}
+</div>
+)
+}
+export default function TypingArea({ text, setText, addWrong }) {
+return (
+<textarea type="text" className="m-2 p-3 border border-gray-900 rounded-sm w-10/12 md:w-1/2 h-96" value={text}
+onChange={(e) => { setText(e.target.value) }} onKeyDown={(e) => { if (e.key == "Backspace" || e.key == "Delete") addWrong() }}
+/>
+)
+}       
+export default function ResultsDisplay({time, wpm, accuracy}) {
+return (
+<div className=" m-2 p-3 border border-gray-900 rounded-sm flex flex-row justify-center items-center">
+<div className="m-2 p-3 border border-gray-900 rounded-sm">TIME: {time}</div>
+<div className="m-2 p-3 border border-gray-900 rounded-sm">WPM: {wpm}</div>
+<div className="m-2 p-3 border border-gray-900 rounded-sm">ACCURACY: {accuracy}</div>
 </div>
 )
 }
