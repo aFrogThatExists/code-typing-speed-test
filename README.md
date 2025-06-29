@@ -1,6 +1,8 @@
 # Code typing speed test
 A typing test for programmers
 
+## Demo
+https://afrogthatexists.github.io/code-typing-speed-test/
 
 ## Running locally
 
