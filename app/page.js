@@ -59,7 +59,7 @@ export default function Home() {
     setTotalWrongs(0)
     setCorrectCounter(0)
     setTimePassed(0)
-    fetch("/text_to_write.txt").then((response) => response.text()).then((text) => {
+    fetch("./text_to_write.txt").then((response) => response.text()).then((text) => {
       const index = Math.floor(Math.random() * (text.split("\n").length - 7))
       console.log(index)
       console.log(text.split("\n").slice(index, index + 7).join("\n"))
