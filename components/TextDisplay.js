@@ -1,7 +1,7 @@
 
 export default function TextDisplay({ text, correct, wrong }) {
     return (
-        <div className=" m-2 p-3 border border-gray-900 rounded-sm">
+        <div style={{userSelect: "none"}} className=" m-2 p-3 border border-gray-900 rounded-sm">
             {
                 
                 text.split("").map((char, index) => {
