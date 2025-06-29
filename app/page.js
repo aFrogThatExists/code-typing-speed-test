@@ -60,10 +60,10 @@ export default function Home() {
     setCorrectCounter(0)
     setTimePassed(0)
     fetch("/text_to_write.txt").then((response) => response.text()).then((text) => {
-      const index = Math.floor(Math.random() * (text.split("\n").length - 10))
+      const index = Math.floor(Math.random() * (text.split("\n").length - 7))
       console.log(index)
-      console.log(text.split("\n").slice(index, index + 10).join("\n"))
-      setTextToWrite(text.split("\n").slice(index, index + 10).join("\n"))
+      console.log(text.split("\n").slice(index, index + 7).join("\n"))
+      setTextToWrite(text.split("\n").slice(index, index + 7).join("\n"))
     })
     setRunning(true)
     runTimer()
@@ -83,7 +83,7 @@ export default function Home() {
           <button className="m-2 py-3 px-7 border border-gray-900 rounded-sm" onClick={Start}>Start</button>
       }
       {
-        (!running && writtenText.length > 0) ? <ResultsDisplay time={timePassed.toFixed(1)} wpm={(textToWrite.replace(/[-+.,=]/g, " ").split(" ").length / (timePassed / 60)).toFixed(1)} accuracy={((correctCounter / (correctCounter + totalWrongs)) * 100).toFixed(1)} />
+        (!running && writtenText.length > 0) ? <ResultsDisplay time={timePassed.toFixed(1)} wpm={(textToWrite.replace(/[-+.,=[\]{}<>())]/g, " ").split(" ").length / (timePassed / 60)).toFixed(1)} accuracy={((correctCounter / (correctCounter + totalWrongs)) * 100).toFixed(1)} />
           : ""
       }
     </div>
